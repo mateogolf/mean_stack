@@ -1,0 +1,65 @@
+<html>
+<body>
+<script>
+    // Part I
+    // Create a function called starString() that takes a number and returns a string of that many *. For example:
+    function starString(n){
+        if (typeof n != 'number') { return "Input not a number"; }
+        var result = "";
+        for(let i=0;i<n;i++){
+            result+="*";
+        }
+        return result;
+    }
+    let stars = starString(8)
+    console.log(stars)//=>******** 
+
+    // Part II
+    // Create a function called drawStars() that takes an array of numbers and prints out *.
+    function drawStars(arr){
+        if (arr.constructor != Array) { return "INPUT NOT AN ARRAY"; }
+        console.log("drawStars");
+        for (let i = 0; i < arr.length; i++) {
+            if (typeof arr[i] == 'string') {
+                let result = "";
+                for (let k = 0; k < arr[i].length; k++) {
+                    result += arr[i][0].toLowerCase();
+                }
+                console.log(result);
+            }
+            else if (typeof arr[i] == 'number') { console.log(starString(arr[i])); }
+            else { return "an element in array NOT a string or number"; }
+        }
+    }
+    let x = [4, 6, 1, 3, 5, 7, 25]
+    drawStars(x);
+//             Part III
+    // Modify the function above. Allow an array containing integers and strings to be passed to the drawStars() function. 
+    // When a string is passed, instead of displaying *, display the first letter of the string according to the example below.
+    //You may use the .toLowerCase() string method for this part.
+    function drawStarsAndStr(arr){
+        if (arr.constructor != Array) { return "INPUT NOT AN ARRAY"; }
+        for(let i=0;i<arr.lenth;i++){
+            if(typeof arr[i]=='string'){
+                let result = "";
+                for(let k=0;k<arr[i].length;k++){
+                    result += arr[i][0].toLowerCase();
+                }
+                console.log(result);
+            }
+            else if (typeof arr[i] == 'number'){console.log(starString(arr[i]));}
+            else{return "an element in array NOT a string or number";}
+        }
+    }
+    let y = [4, "Tom", 1, "Michael", 5, 7, "Jimmy Smith"]
+    drawStars(y)
+// For example:
+
+//             let x = [4, "Tom", 1, "Michael", 5, 7, "Jimmy Smith"]
+//         drawStars(x) should print the following in the terminal:
+
+
+
+</script>   
+</body>
+</html>
