@@ -1,5 +1,10 @@
 <html>
 <body>
+    <p id="test1">Test 1</p>
+    <p id="test2">Test 2</p>
+    <p id="test3">Test 3</p>
+    <p id="test4">Test 4</p>
+    <p id="test5">Test 5</p>
 <script>
     function magic_multiply(x, y) {
         // --- your code here ---
@@ -25,17 +30,22 @@
     }
     let test1 = magic_multiply(5, 2);
     console.log(test1);
+    document.getElementById("test1").innerHTML = test1;
     // => 10
     let test2 = magic_multiply(0, 0);
     console.log(test2);
+    document.getElementById("test2").innerHTML = test2;
     // => "All inputs 0"
     let test3 = magic_multiply([1, 2, 3], 2);
     console.log(test3);
+    document.getElementById("test3").innerHTML = test3;
     // => [2, 4, 6]
     let test4 = magic_multiply(7, "three");
+    document.getElementById("test4").innerHTML = test4;
     console.log(test4);
     // => "Error: Can not multiply by string"
     let test5 = magic_multiply("Brendo", 4);
+    document.getElementById("test5").innerHTML = test5;
     console.log(test5);
     // => "BrendoBrendoBrendoBrendo"
 
