@@ -1,0 +1,45 @@
+<html>
+<body>
+<script>
+    function magic_multiply(x, y) {
+        // --- your code here ---
+        // console.log(`x: ${x.constructor === Array} and y: ${typeof y}`)
+        if(typeof x == 'number' && typeof y == 'number'){
+            (x==0&&y==0)?x="\"All inputs 0\"":x*=y;
+        }
+        else if(x.constructor === Array && typeof y == 'number'){
+            for(let i=0;i<x.length;i++){
+                x[i]=y*x[i];
+            }
+        }
+        else if (typeof y == 'string' && typeof x == 'number') {
+            x= "\"Error: Can not multiply by string\"";
+        }
+        else if(typeof x == 'string' && typeof y == 'number'){
+            let string=x;
+            for(let i=1;i<y;i++){
+                x+=string;
+            }
+        }
+        return x;
+    }
+    let test1 = magic_multiply(5, 2);
+    console.log(test1);
+    // => 10
+    let test2 = magic_multiply(0, 0);
+    console.log(test2);
+    // => "All inputs 0"
+    let test3 = magic_multiply([1, 2, 3], 2);
+    console.log(test3);
+    // => [2, 4, 6]
+    let test4 = magic_multiply(7, "three");
+    console.log(test4);
+    // => "Error: Can not multiply by string"
+    let test5 = magic_multiply("Brendo", 4);
+    console.log(test5);
+    // => "BrendoBrendoBrendoBrendo"
+
+
+</script>   
+</body>
+</html>
