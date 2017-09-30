@@ -25,6 +25,7 @@ let users = {
 //EMPLOYEES
 //1 - JONES, MIGUEL - 11
 for(let status in users){
+    console.log(status.toUpperCase());
     for (let i = 0; i < users[status].length; i++) {
         console.log(`${i + 1} - ${users[status][i].last_name}, ${users[status][i].first_name} - ${users[status][i].last_name.length + users[status][i].first_name.length}`);
     }
