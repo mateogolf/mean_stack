@@ -18,17 +18,25 @@ function Ninja(name="",health=100){
         return this;
     }
     this.punch = function(ninja){
+        if(ninja.constructor != Ninja){
+            console.log("Target is not a ninja");
+            return;
+        }
         ninja.health -= 5;
         console.log(`${ninja.name} was punched by ${this.name} and lost 5 Health`);
     }
     this.kick = function (ninja) {
+        if (ninja.constructor != Ninja) {
+            console.log("Target is not a ninja");
+            return;
+        }
         ninja.health -= 15;
         console.log(`${ninja.name} was kicked by ${this.name} and lost 15 Health`);
     }
 }
 var blue_ninja = new Ninja("Goemon");
 var red_ninja = new Ninja("Bill Gates");
-red_ninja.punch(blue_ninja);
+red_ninja.punch("blue_ninja");
 // -> "Goemon was punched by Bill Gates and lost 5 Health!"
 
 blue_ninja.kick(red_ninja);
