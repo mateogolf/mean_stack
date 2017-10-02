@@ -21,8 +21,6 @@ function Ninja(name="",health=100){
 }
 
 var ninja1 = new Ninja("Hyabusa");
-console.log("Test");
-console.log(ninja1.name);
 ninja1.sayName();
 // -> "My ninja name is Hyabusa!"
 ninja1.showStats();
