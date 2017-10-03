@@ -1,7 +1,6 @@
 var _ = {
     map: function (list,iteratee) {
         //code here;
-        
         if(list.constructor == Array){
             var result = [];
             for (let i = 0; i < list.length; i++) {
@@ -9,7 +8,6 @@ var _ = {
             }
             return result;
         } else if (list.constructor == Object){
-            console.log("This is an object");
             var result = {};
             for(let key in list){
                 result[key] = iteratee(list[key],key);
@@ -31,7 +29,6 @@ var _ = {
             //     console.log("element in array NOT a number")
             // }
             memo ? result = iteratee(memo, list[i]) : result =iteratee(result,list[i]);
-            // result = iteratee(result,list[i]);
         }
         return result;
     },
