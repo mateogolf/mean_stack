@@ -27,7 +27,7 @@ $(document).ready(function(){
         return new Dojo(elementID);
     }
     $Dojo("click").click(function () { 
-        alert("The button was clicked!");
+        // alert("The button was clicked!");
         $('#dojo').html(`<h1>Clicked that bitch!</h1>`); 
     });
     $Dojo("hover").hover(
@@ -39,27 +39,6 @@ $(document).ready(function(){
         // alert("The button was hovered on!");
         $('#dojo').html(`<h1>Don't Leave me!!</h1>`);
     });
-
-
-        //     if (action == "click") {
-        //         alert("The button was clicked!");
-        //         $('#dojo').html(`<h1>Clicked that bitch!</h1>`);
-        //     }
-        //     else if (action == "hover") {
-        //         alert("The button was hovered on!");
-        //         $('#dojo').html(`<h1>Stop Hovering!</h1>`);
-        //     }
-        //     else { console.log("Not a function") }
-        // }
-        // var click = new $Dojo("click");
-        // click.addEventListener("click", $Dojo("click"));
-        
-        // var hover = document.getElementById("hover");
-        // hover.addEventListener("hover", $Dojo("hover"));
-
-        
-    // })();
-    
 });
     </script>
 </head>
