@@ -1,0 +1,22 @@
+<html>
+  <body>
+    <button id="someButton">This is Some Button</button>
+    <script>
+    // Link our variable "button" to a DOM element
+    var button = document.getElementById("someButton")
+    // add a DOM eventListener to that variable.
+    button.addEventListener("click", whatToDoOnClick);
+    // here we define the whatToDoOnClick function
+    function whatToDoOnClick() {
+        alert("You Did it!")
+    }
+    //Example of an immediate function with parameters;
+        // It reduces the number of global variables and mitigates variable name pollution.
+        // Features are self- contained units, resulting in easier testing.
+    (function (param1, param2){
+        console.log( "I'm an immediate function!" );
+    }) ( arg1, arg2 ) ;
+
+    </script>
+  </body>
+</html>
