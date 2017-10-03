@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hunting Github</title>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+    <script>
+$(document).ready(function(){
+    function Dojo(element) {
+        this.element = document.getElementById(element);
+        this.click = function (action) {
+            this.element.addEventListener("click", action);
+            return this.element;
+        }
+        this.hover = function (action1,action2) {
+            this.element.addEventListener("mouseover", action1);
+            this.element.addEventListener("mouseout", action2);
+            return this.element;
+        }
+    }
+    function $Dojo(elementID){
+        return new Dojo(elementID);
+    }
+    $Dojo("click").click(function () { 
+        alert("The button was clicked!");
+        $('#dojo').html(`<h1>Clicked that bitch!</h1>`); 
+    });
+    $Dojo("hover").hover(
+        function () {
+            // alert("The button was hovered on!");
+            $('#dojo').html(`<h1>Stop Hovering!</h1>`);
+        },
+        function () { 
+        // alert("The button was hovered on!");
+        $('#dojo').html(`<h1>Don't Leave me!!</h1>`);
+    });
+
+
+        //     if (action == "click") {
+        //         alert("The button was clicked!");
+        //         $('#dojo').html(`<h1>Clicked that bitch!</h1>`);
+        //     }
+        //     else if (action == "hover") {
+        //         alert("The button was hovered on!");
+        //         $('#dojo').html(`<h1>Stop Hovering!</h1>`);
+        //     }
+        //     else { console.log("Not a function") }
+        // }
+        // var click = new $Dojo("click");
+        // click.addEventListener("click", $Dojo("click"));
+        
+        // var hover = document.getElementById("hover");
+        // hover.addEventListener("hover", $Dojo("hover"));
+
+        
+    // })();
+    
+});
+    </script>
+</head>
+<body>
+    <button id="click">Click This</button>
+    <button id="hover">Don't be Hoverin'</button>
+    <div id="dojo"></div>
+</body>
+</html>
