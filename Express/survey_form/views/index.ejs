@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Survey Form</title>
+	<link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+<body>
+	<fieldset>
+        <legend>Dojo Survey</legend>
+		<form action="/result" method="post">
+            <table>
+            <tbody>
+                <tr>
+                    <td>Your Name:</td>
+                    <td>
+                        <input type="text" name="name" value="<%=data.name%>">
+                    </td>
+                    <td>
+                        <!-- <c:if test="${noName != null}">
+                            <p style="color:red"><c:out value="${noName}"/></p>
+                        </c:if> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td>Dojo Location:</td>
+                    <td>
+                        <!--Select for dropdown  -->
+                        <select name="location" name="location">
+                            <option value="Seattle">Seattle</option>
+                            <option value="Washington DC">Washington DC</option>
+                            <option value="Burbank">LA - Burbank</option>
+                            <option value="San Jose">San Jose</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Favorite Language:</td>
+                    <td>
+                        <!--Select for dropdown  -->
+                        <select name="favorite" id="fav_lang">
+                            <option value="Python">Python</option>
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="Swift">Swift</option>
+                            <option value="Java">Java</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Comments(optional)</td>
+                    <td>
+                        <!-- <c:if test="${noComments != null}">
+                            <p style="color:red"><c:out value="${noComments}"/></p>
+                        </c:if> -->
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+            <textarea name="comments" id="" cols="30" rows="10"><%=data.comments%></textarea>
+            <input type="submit" value="Submit Form">
+        </form>
+    </fieldset>
+</body>
+</html>
