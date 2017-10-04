@@ -2,21 +2,21 @@ const http = require('http');
 const fs = require('fs');
 const server = http.createServer(function (request, response) {
     if (request.url === '/cars') {
-        fs.readFile('index.html', 'utf8', function (errors, contents) {
+        fs.readFile('views/index.html', 'utf8', function (errors, contents) {
             response.writeHead(200, { 'Content-Type': 'text/html' });
             response.write(contents);
             response.end();
         });
     } 
     else if (request.url === '/cars/new') {
-        fs.readFile('newCar.html', 'utf8', function (errors, contents) {
+        fs.readFile('views/newCar.html', 'utf8', function (errors, contents) {
             response.writeHead(200, { 'Content-Type': 'text/html' });
             response.write(contents);
             response.end();
         });
     } 
     else if (request.url === '/cats') {
-        fs.readFile('cats.html', 'utf8', function (errors, contents) {
+        fs.readFile('views/cats.html', 'utf8', function (errors, contents) {
             response.writeHead(200, { 'Content-Type': 'text/html' });
             response.write(contents);
             response.end();
@@ -37,14 +37,6 @@ const server = http.createServer(function (request, response) {
             response.end();
         })
     }
-    // else if (request.url === '/images/pizza.jpg') {
-    //     fs.readFile('./images/pizza.jpg', function (errors, contents) {
-    //         response.writeHead(200, { 'Content-type': 'image/jpg' });
-    //         response.write(contents);
-    //         response.end();
-    //     })
-    // }
-
     else {    // request didn't match anything:
         response.writeHead(404);
         response.end('the URL requested is not available.');
