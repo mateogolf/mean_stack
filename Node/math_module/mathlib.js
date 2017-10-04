@@ -10,7 +10,7 @@ module.exports = function () {
             return num*num;
         },
         random: function (num1, num2) {
-            return Math.floor((Math.random()*36)+1);
+            return Math.floor((Math.random()*35)+1);
         }
     }
 };
