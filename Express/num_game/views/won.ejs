@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Great Numbers Game</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>Welcome to the Great Numbers Game</h1>
+            <p>I am thinking of a number between 1 and 100</p>
+            <p>Take a Guess!</p>
+            <form action="/guess" method="post">
+                <div id="won">
+                    <h2><%=hint%></h2>
+                    <a href="/reset">Play Again</a>
+                </div>
+            </form>
+            
+        </div>        
+    </body>
+</html>
