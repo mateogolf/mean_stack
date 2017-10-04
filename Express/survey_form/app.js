@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 
 app.use(express.static(path.resolve(__dirname, 'static')));//(__dirname, 'static'));
-app.use(session({ secret: 'counter' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('views', __dirname + '/views');
