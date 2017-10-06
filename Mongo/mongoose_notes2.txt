@@ -1,0 +1,35 @@
+MOngoose Notes:
+make a package.json file:
+yourcommandline> npm init -y
+yourcommandline> npm install express --save
+yourcommandline> npm install ejs --save
+yourcommandline> npm install body-parser --save
+yourcommandline> npm install mongoose --save
+npm install moment --save //Date management
+
+DEPENDECY NOTES:
+Dependencies for Mongoose
+-  Node.js + Express
+	Again, we'll need a Node server to accept the different HTTP requests we'll need to perform basic CRUD (create, read, update, and delete) operations.
+-  MongoDB
+	Like before, in order to properly host our database server, we need the mongod daemon running in the background. The mongo terminal, however, is less recommended. If you properly configure your Mongoose code, your database and collections can be generated automatically upon the first write to the DB. For this reason, it's recommended to build your databases through your Mongoose code rather than manually create them in the terminal and try to connect.
+	node_modules:
+-  Mongoose
+	The Mongoose module is how we'll set up the connection to our MongoDB within our Node server. Mongoose allows us to more properly structure our code for interaction with the DB, as well as define all the collections our app needs in the form of Schemas. Mongoose will be required for connecting the DB, as well as defining all of these schemas.
+-  EJS
+	We're not yet ready to replace EJS with a full front end framework, so for now, we'll keep using it. Again, EJS is just a really quick way for us to render views and pass them data, which allows us to focus on our Node backend.
+-  Express
+	Express and Node together again! By this point, you should know how useful Express is, especially when it comes to handling those incoming HTTP requests!
+-  body-parser
+	Body-Parser will continue to read the data passed by incoming HTTP requests, no matter if it comes in as part of the request's body, sent over the URL, or even sent as raw JSON.
+
+
+<%
+                    var options = { 
+                        hour: 'numeric', minute: 'numeric',
+                        month: 'long', day: 'numeric', year: 'numeric'
+                    };
+                    
+                    var quoteDate = new Intl.DateTimeFormat('en-US', options).format(quotes[x].createdAt);
+                %>
+

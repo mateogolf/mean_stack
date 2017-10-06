@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mongoose Demo</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Age</td>
+                <td>Email</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (var x=0;x<users.length;x++) { %>
+                <tr>
+                    <td><%= users[x].first_name %> <%= users[x].last_name %></td>
+                    <td><%= users[x].age %></td>
+                    <td><%= users[x].email %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+     <% if(typeof(errors) != 'undefined' ) { %>
+        <% for (var x in errors) { %>
+        <h3><%= errors[x].messages %></h3>
+        <% } %>
+    <% } %>
+
+    <form action="/users" method="POST">
+        <input type="text" name="first_name" placeholder="First Name">
+        <input type="text" name="last_name" placeholder="Last Name">
+        <input type="text" name="age" placeholder="Age">
+        <input type="text" name="email" placeholder="email">
+        <input type="submit" value="Add User">
+    </form>
+</body>
+</html>
