@@ -1,4 +1,21 @@
 Express installs INSIDE Project:
-npm install express
-npm install body-parser
-npm install express-session
+npm install express --save
+npm install ejs --save //TEMPLATES
+npm install body-parser --save //GET/POST
+npm install express-session --save //Session
+npm install moment --save //Date management
+
+Dependencies for Express & Socket.io
+Node.js
+This will be a constant across the vast majority of the MEAN stack. You will almost always be running a Node server or app of some kind. This will act as your server and back-end Javascript interpreter.
+Express
+Technically a Node module, but let's talk about it here too since it gets it's own letter in the acronym! Express is a wonderful set of tools that help us write rules for incoming HTTP requests. Express is arguably the most useful Node module in your collection, and only rarely will we not use it.
+node_modules:
+EJS
+Embedded Javascript is the templating engine we will use to render our views. When using EJS, your node server will take the .ejs file you wrote, parse through it, resolve all of the Javascript in the file, and then send a 'rendered' HTML page to the client. This is extra computation that the server will be required to do, and later we'll replace EJS with a full front end framework like Angular.
+Express
+Like we said before, express is super useful for managing incoming requests!
+body-parser
+Guess what body-parser is used for? Parsing the body! We'll use this piece of middleware to parse information out of HTTP requests made to our server. Body-parser is incredibly flexible, and will be used to not only pull POST data out of requests, but can also snag data encoded into URLs via GET requests, and later you'll use body-parser to pull raw JSON.
+socket.io
+This node module will enable you to use web sockets within your application, we'll get into it more later. You will use socket.io for just this chapter!
