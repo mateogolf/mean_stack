@@ -1,10 +1,8 @@
 MOngoose Notes:
 make a package.json file:
-yourcommandline> npm init -y
-yourcommandline> npm install express --save
-yourcommandline> npm install ejs --save
-yourcommandline> npm install body-parser --save
-yourcommandline> npm install mongoose --save
+
+npm init -y
+npm install express ejs body-parser mongoose express-session --save
 npm install moment --save //Date management
 
 DEPENDECY NOTES:
@@ -22,14 +20,4 @@ Dependencies for Mongoose
 	Express and Node together again! By this point, you should know how useful Express is, especially when it comes to handling those incoming HTTP requests!
 -  body-parser
 	Body-Parser will continue to read the data passed by incoming HTTP requests, no matter if it comes in as part of the request's body, sent over the URL, or even sent as raw JSON.
-
-
-<%
-                    var options = { 
-                        hour: 'numeric', minute: 'numeric',
-                        month: 'long', day: 'numeric', year: 'numeric'
-                    };
-                    
-                    var quoteDate = new Intl.DateTimeFormat('en-US', options).format(quotes[x].createdAt);
-                %>
 
