@@ -82,9 +82,9 @@ var map2 = _.map({ one: 1, two: 2, three: 3 }, function (num, key) { return num 
 var sum = _.reduce([1, 2, 3], function (memo, num) { return memo + num; });
 var find_even = _.find([1, 2, 3, 4, 5, 6], function (num) { return num % 2 == 0; });
 var odds = _.reject(arr1, function (num) { return num % 2 == 0; });
-console.log(evens); // if things are working right, this will return [2,4,6].
+// console.log(evens); // if things are working right, this will return [2,4,6].
 // console.log(mult2);
-console.log(map2);
-// console.log(sum);
-console.log(find_even);
-console.log(odds);
+// console.log(map2);
+console.log(sum);
+// console.log(find_even);
+// console.log(odds);
