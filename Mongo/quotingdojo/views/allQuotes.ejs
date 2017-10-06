@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quoting Dojo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Here are the awesome quotes:</h2>
+    <ul>
+    <% for (var x in quotes) { %>
+        <li>
+            "<%= quotes[x].quote %>"
+            <ul>
+                <%
+                    var options = { 
+                        hour: 'numeric', minute: 'numeric',
+                        month: 'long', day: 'numeric', year: 'numeric'
+                    };
+                    
+                    var otherDateOption = new Intl.DateTimeFormat('en-US', options).format(quotes[x].createdAt);
+
+                    var quoteDate = moment().set(quotes[x].createdAt).format('h:mm a MMMM d, YYYY');
+                %>
+                <li class="quoter">-<%= quotes[x].name %> at <%= quoteDate %></li>
+            </ul>
+        <hr>
+        </li>
+    <% } %>
+    </ul>
+</body>
+</html>

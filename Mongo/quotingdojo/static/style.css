@@ -1,0 +1,11 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 5px;
+}
+li{
+    list-style: none;
+}
+li.quoter{
+    padding-left: 20px;
+}
