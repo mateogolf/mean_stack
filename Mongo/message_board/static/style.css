@@ -1,0 +1,45 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    /* border: 1px dotted red; */
+}
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+}
+.user{
+    display:flex;
+}
+form#message{
+    display: flex;
+    flex-direction: column;
+    margin: 10px; 
+}
+form.wall{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px; 
+}
+.content{
+    width: auto;
+    height: 50px;
+    /* margin: 0px 10px; */
+    border: 1px solid black;
+}
+/* label{margin: 0px 10px;} */
+article{
+    padding: 10px;
+}
+article div,article form{
+    margin-left: 25px;
+}
+article p{
+    margin: 5px 0px;
+}
+form.wall input:last-of-type, form#message input:last-of-type{
+    width: 200px;
+    align-self: flex-end;
+    margin: 5px;
+}
