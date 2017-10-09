@@ -14,11 +14,11 @@ app.set('view engine', 'ejs');
 
 mongoose.connect('mongodb://localhost/message_board');
 var MessageSchema = new mongoose.Schema({
-    name: { type: String},
+    name: { type: String, minlength: 4},
     content: { type: String},
     comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 }, { timestamps: true });
-MessageSchema.path('name').required(true, 'A name is requires');
+MessageSchema.path('name').required(true, 'Name must be at least 4 characters');
 MessageSchema.path('content').required(true, 'There is no content in this message.');
 mongoose.model('Message', MessageSchema);
 var Message = mongoose.model('Message');
@@ -26,11 +26,11 @@ var Message = mongoose.model('Message');
 // What would we need to add to make the below snippet work properly? Read your console!
 var CommentSchema = new mongoose.Schema({
     // since this is a reference to a different document, the _ is the naming convention!
-    name: { type: String},
+    name: { type: String, minlength: 4},
     _message: { type: Schema.Types.ObjectId, ref: 'Message' },
     content: { type: String}
 }, { timestamps: true });
-CommentSchema.path('name').required(true, 'A name is requires');
+CommentSchema.path('name').required(true, 'Name must be at least 4 characters');
 CommentSchema.path('content').required(true, 'There is no content in this comment.');
 mongoose.model('Comment', CommentSchema);
 var Comment = mongoose.model('Comment');

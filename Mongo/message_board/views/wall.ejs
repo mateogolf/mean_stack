@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Message Board</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -43,7 +42,7 @@
                     <%for(let y=0;y<posts[i].comments.length;y++){%>
                         <!--Comment Content-->
                         <h5>Name:
-                            <%= posts[i].comments[0].name %>
+                            <%= posts[i].comments[y].name %>
                         </h5>
                         <p>
                             <%= posts[i].comments[y].content %>
