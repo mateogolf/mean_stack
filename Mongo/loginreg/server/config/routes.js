@@ -18,4 +18,8 @@ module.exports = (app) => {
         }
         res.render('main',{currentUser:currentUser})//,{loginErrors:,regErrors:req.session.regErrors});
     });
+    app.get('/logout', (req, res) => {
+        req.session.currentUser = undefined;
+        res.redirect('/');
+    })
 }

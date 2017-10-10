@@ -19,10 +19,10 @@
         </ul>
         <table>
             <tr>
-                <td><input type="text" name="email" placeholder="Email"></td>
+                <td><input type="text" name="email" placeholder="Email" required></td>
             </tr>
             <tr>
-                <td><input type="password" name="login_password" placeholder="password"></td>
+                <td><input type="password" name="login_password" placeholder="password" required></td>
             </tr>
         </table>
         <input type="submit" value="Login">
@@ -43,19 +43,19 @@
                     <!-- First Name -->
                     <td><label for="first_name">First Name:</label></td>
                     <td></td>
-                    <td><input type="text" id="first_name" name="first_name" value="<%=user.first_name%>"></td>
+                    <td><input type="text" id="first_name" name="first_name"></td>
                 </tr>
                 <tr>
                     <!-- Last Name -->
                     <td><label for="last_name">Last Name: </label></td>
                     <td></td>
-                    <td><input type="text" id="last_name" name="last_name" value="<%=user.last_name%>"></td>
+                    <td><input type="text" id="last_name" name="last_name"></td>
                 </tr>
                 <tr>
                     <!-- Email -->
                     <td><label for="email">Email: </label></td>
                     <td></td>
-                    <td><input type="text" id="email" name="email" value="<%=user.email%>"></td>
+                    <td><input type="text" id="email" name="email"></td>
                 </tr>
                 <tr>
                     <!-- birthday -->

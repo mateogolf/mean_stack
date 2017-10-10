@@ -30,11 +30,11 @@ var mongoose = require('mongoose'),
         minlength:8,
         required: [true, 'Password must be 8 characters long'] 
     },
-    pw_confirm: {
-        type: String,
-        minlength: 8,
-        required: [true, 'Password must be 8 characters long']
-    },
+    // pw_confirm: {
+    //     type: String,
+    //     minlength: 8,
+    //     required: [true, 'Password must be 8 characters long']
+    // },
     birthday: {
         type:Date,
         required: [true, 'Birthday REQUIRED'],
@@ -55,9 +55,10 @@ var mongoose = require('mongoose'),
     }
 }, { timestamps: true });
 UserSchema.plugin(uniqueValidator);
-UserSchema.methods.login = (password)=>{
+UserSchema.methods.login = function (passTry){
+    const self = this;
     return new Promise((resolve,reject)=>{
-        bcrypt.compare(password,this.pw_confirm,(err,ok)=>{
+        bcrypt.compare(passTry,self.password,(err,ok)=>{
             if(!ok){
                 reject({message: "Passwords don't match"})
                 return
@@ -65,27 +66,21 @@ UserSchema.methods.login = (password)=>{
             resolve()
         });
     });
+    // if(password!=self.password){
+    //     reject({ message: "Passwords don't match" })
+    //     return
+    // }
+    // resolve();
 }
-UserSchema.pre('save',(next)=>{
-    return new Promise((resolve, reject) => {
-        //both are the same
-        if(this.password!=this.pw_confirm){
-            reject({ message: "Password doesn't match confirmation" })
-            return;
+UserSchema.pre('save',function(next){
+    let self=this;
+    bcrypt.hash(self.password,14,function(err,hashed_password){
+        if(err){
+            next(err)
         }
-
-        bcrypt.hash(this.password,3)
-            .then((hashed_password)=>{
-                this.password = hashed_password;
-                next();
-            })
-            .catch((error)=>{
-                reject({ message: "Password NOT HASHED" })
-                return;
-            })
+        self.password = hashed_password;
+        next();
     })
-
-    next();
 })
 
 mongoose.model('User', UserSchema);
