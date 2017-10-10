@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Reg</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <fieldset>
+    <legend>Login</legend>
+    <form action="/login" class="login" method="post">
+        <ul>
+            <% if(typeof(loginErrors) != 'undefined' ) { %>
+                <% for (let x in loginErrors) { %>
+                <li><%= loginErrors[x].message %></li>
+                <% } %>
+            <% } %>
+        </ul>
+        <table>
+            <tr>
+                <td><input type="text" name="email" placeholder="Email"></td>
+            </tr>
+            <tr>
+                <td><input type="password" name="login_password" placeholder="password"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Login">
+    </form>
+    </fieldset>
+    <fieldset>
+        <legend>Register</legend>
+        <ul>
+        <% if(typeof(regErrors) != 'undefined' ) { %>
+            <% for (let x in regErrors) { %>
+            <li><%= regErrors[x].message %></li>
+            <% } %>
+        <% } %>
+        </ul>
+        <form action="/register" class="registration" method="POST">
+            <table>
+                <tr>
+                    <!-- First Name -->
+                    <td><label for="first_name">First Name:</label></td>
+                    <td></td>
+                    <td><input type="text" id="first_name" name="first_name" value="<%=user.first_name%>"></td>
+                </tr>
+                <tr>
+                    <!-- Last Name -->
+                    <td><label for="last_name">Last Name: </label></td>
+                    <td></td>
+                    <td><input type="text" id="last_name" name="last_name" value="<%=user.last_name%>"></td>
+                </tr>
+                <tr>
+                    <!-- Email -->
+                    <td><label for="email">Email: </label></td>
+                    <td></td>
+                    <td><input type="text" id="email" name="email" value="<%=user.email%>"></td>
+                </tr>
+                <tr>
+                    <!-- birthday -->
+                    <td><label for="birthday">Birthday: </label></td>
+                    <td></td>
+                    <td><input type="date" id="birthday" name="birthday" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder="YYYY-MM-DD"></td>
+                </tr>
+                <tr>
+                    <!-- Password -->
+                    <td><label for="password">Password: </label></td>
+                    <td></td>
+                    <td><input type="password" id="password" name="password"></td>
+                </tr>
+                <tr>
+                    <!-- PW Confirm -->
+                    <td><label for="pw_confirm">Password Confirmation: </label></td>
+                    <td></td>
+                    <td><input type="password" id="pw_confirm" name="pw_confirm"></td>
+                </tr>
+            </table>
+            <input type="submit" value="Register">
+        </form>
+    </fieldset>
+</body>
+</html>
