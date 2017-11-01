@@ -66,11 +66,6 @@ UserSchema.methods.login = function (passTry){
             resolve()
         });
     });
-    // if(password!=self.password){
-    //     reject({ message: "Passwords don't match" })
-    //     return
-    // }
-    // resolve();
 }
 UserSchema.pre('save',function(next){
     let self=this;
