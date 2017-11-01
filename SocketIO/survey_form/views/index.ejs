@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Survey Form</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        var socket = io.connect();
+
+        $("#survey").submit(function(event){
+            const data = {
+                'name': $("#name").val(),
+                'location': $("#location").val(),
+                'favorite': $("#favorite").val(),
+                'comments': $('#comments').val()
+            };
+            // console.log("emitting:",data)
+            socket.emit("survey_submitted",{data:data})
+            $("#output").html(`You emitted the following information:${JSON.stringify(data)}`)
+            event.preventDefault();
+        })
+        socket.on('random_number',(data)=>{
+            $("#output").append(`<br>Your lucky number emitted by the server is:${data.number}`)
+
+        })
+    })
+    
+    </script>
+</head>
+<body>
+    <div id="output">
+    </div>
+	<fieldset>
+        <legend>Dojo Survey</legend>
+		<form id="survey"><!--action="/result" method="post">-->
+            <table>
+            <tbody>
+                <tr>
+                    <td>Your Name:</td>
+                    <td>
+                        <input type="text" id="name" name="name" value="<%=data.name%>">
+                    </td>
+                    <td>
+                        <!-- <c:if test="${noName != null}">
+                            <p style="color:red"><c:out value="${noName}"/></p>
+                        </c:if> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td>Dojo Location:</td>
+                    <td>
+                        <!--Select for dropdown  -->
+                        <select name="location" id="location" name="location">
+                            <option value="Seattle">Seattle</option>
+                            <option value="Washington DC">Washington DC</option>
+                            <option value="Burbank">LA - Burbank</option>
+                            <option value="San Jose">San Jose</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Favorite Language:</td>
+                    <td>
+                        <!--Select for dropdown  -->
+                        <select name="favorite" id="favorite">
+                            <option value="Python">Python</option>
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="Swift">Swift</option>
+                            <option value="Java">Java</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Comments(optional)</td>
+                    <td>
+                        <!-- <c:if test="${noComments != null}">
+                            <p style="color:red"><c:out value="${noComments}"/></p>
+                        </c:if> -->
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+            <textarea name="comments" id="comments" cols="30" rows="10"><%=data.comments%></textarea>
+            <input type="submit" value="Submit Form">
+        </form>
+    </fieldset>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Survey Results</title>
+	<link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+<body>
+	<h1>Submitted Info</h1>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Your Name:</td>
+                    <td><%=data.name%></td>
+                </tr>
+                <tr>
+                    <td>Dojo Location:</td>
+                    <td><%=data.location%></td>
+                </tr>
+                <tr>
+                    <td>Favorite Language:</td>
+                    <td><%=data.favorite%></td>
+                </tr>
+                <tr>
+                    <td>Comments:</td>
+                    <td><%=data.comments%></td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/">Go back</a>
+</body>
+</html>
