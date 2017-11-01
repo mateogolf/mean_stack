@@ -25,11 +25,11 @@ io.sockets.on('connection', function (socket) {
     console.log("Client/socket is connected!");
     console.log("Client/socket id is: ", socket.id);
     //Code
-    const count=0;
-    socket.on('reset_button',(data)=>{
-        console.log(`Removing count:${data.count}`)
-        socket.emit('reset', { count: 0 })
-    })
+    // const count=0;
+    // socket.on('reset_button',(data)=>{
+    //     console.log(`Removing count:${data.count}`)
+    //     socket.emit('reset', { count: 0 })
+    // })
     socket.on('count_button', (data) => {
         console.log(typeof data.count)
         socket.emit('counted',{count:data.count+1})
