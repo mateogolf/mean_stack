@@ -13,15 +13,15 @@
     $(document).ready(function () {
         const socket = io.connect();
         $('#reset').click(function(){
-            $('span').html("0");
-            // socket.emit('reset_button',{count:parseInt($('span').text())})
+            // $('span').html("0");
+            socket.emit('reset_button',{})
             // e.preventDefault();
         })
-        // socket.on('reset',(data)=>{
-        //     $('span').html(data.count);
-        // })
+        socket.on('reset',(data)=>{
+            $('span').html(data.count);
+        })
         $('#count').click(function(){
-            socket.emit('count_button', {count:parseInt($('span').text())})
+            socket.emit('count_button', {})
             // e.preventDefault();
         })
         socket.on('counted', (data) => {
