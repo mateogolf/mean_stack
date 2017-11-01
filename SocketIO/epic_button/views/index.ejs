@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The great button game</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        const socket = io.connect();
+        $('#reset').click(function(){
+            socket.emit('reset_button',{count:parseInt($('span').text())})
+            // e.preventDefault();
+        })
+        socket.on('reset',(data)=>{
+            $('span').html(data.count);
+        })
+        $('#count').click(function(){
+            socket.emit('count_button', {count:parseInt($('span').text())})
+            // e.preventDefault();
+        })
+        socket.on('counted', (data) => {
+            console.log("New Count:",data.count)
+            $('span').html(data.count);
+        })
+
+    })
+    </script>
+
+</head>
+<body>
+    <h1>The button has been pushed <span>0</span> time(s)</h1>
+    <p>Push the button to update the count!</p>
+    <button id='count'>Push the epic button</button>
+    <button id='reset'>Reset Button</button>
+</body>
+</html>
