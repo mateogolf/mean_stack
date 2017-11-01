@@ -19,6 +19,7 @@
                 <tr>
                     <td><a href="/mongooses/<%=animals[x]._id%>"><%= animals[x].name %></a></td>
                     <td><a href="/mongooses/edit/<%=animals[x]._id%>">Edit</a> <a href="/mongooses/destroy/<%=animals[x]._id%>">Delete</a></td>
+                    <td><%=animals[x]%></td>
                 </tr>
             <% } %>
         </tbody>
