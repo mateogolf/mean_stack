@@ -12,6 +12,9 @@
     <script type="text/javascript">
     $(document).ready(function () {
         const socket = io.connect();
+        socket.on('connected',(data)=>{
+            $('span').html(data.count);
+        })
         $('#reset').click(function(){
             // $('span').html("0");
             socket.emit('reset_button',{})
@@ -34,7 +37,7 @@
 
 </head>
 <body>
-    <h1>The button has been pushed <span>0</span> time(s)</h1>
+    <h1>The button has been pushed <span></span> time(s)</h1>
     <p>Push the button to update the count!</p>
     <button id='count'>Push the epic button</button>
     <button id='reset'>Reset Button</button>

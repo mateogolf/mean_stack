@@ -9,7 +9,7 @@ const express = require("express"),
 app.use(express.static(path.join(__dirname, "./static")));
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
-// const count=0;
+let count=0;
 // Root route to render the index.ejs view.
 app.get('/', function (req, res) {
     res.render("index")//,{count:count});
@@ -22,10 +22,11 @@ var server = app.listen(PORT, function () {
 var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function (socket) {
+    socket.emit('connected', { count: count })
     console.log("Client/socket is connected!");
     console.log("Client/socket id is: ", socket.id);
     //Code
-    let count=0;
+    // let count=0;
     socket.on('reset_button',(data)=>{
         count=0
         socket.emit('reset', { count: count })
