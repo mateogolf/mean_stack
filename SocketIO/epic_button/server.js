@@ -29,11 +29,11 @@ io.sockets.on('connection', function (socket) {
     // let count=0;
     socket.on('reset_button',(data)=>{
         count=0
-        socket.emit('reset', { count: count })
+        io.emit('reset', { count: count })
     })
     socket.on('count_button', (data) => {
         count+=1;
-        socket.emit('counted',{count:count})
+        io.emit('counted',{count:count})
     })
 
 })
