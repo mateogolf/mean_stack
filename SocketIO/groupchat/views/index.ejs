@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Groupchat</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        var user = { id: "", name: "" };
+        user.name = prompt("The page at: https://localhost says:\nYour Name:");
+        const socket = io.connect();
+        user.id=socket.id;
+        // console.log("This session's userID:",user.id)
+        socket.emit('new_user', { name: user.name})
+        socket.on('logged_in',(data)=>{
+            user.id=data.user_id;
+            console.log("Successful Login:",user)
+        })
+        //(name.length>1)?socket.emit('new_user',{new_user:{id:user.id,name:user.name}}):window.location.reload();
+        var users =[];
+        socket.on('existing_users',(data)=>{
+            users=data.users;
+            console.log(users)
+            $('#dashboard').html("")
+            for(let i=0;i<users.length;i++){
+                $('#dashboard').append(`<div class="user" id="${users[i].id}"><h4>${users[i].name}</h4></div>`)
+            }
+        })
+        socket.on('disconnected_user',(data)=>{
+            console.log("Disconnected user, done on user's side: ",data.id)
+            $(`#${data.id}`).remove();
+        })
+    })
+    // $(document).unload(function(){
+    //     //emit disconnect of this user
+    //     socket.emit('disconnect', { user: { id: socket.id, name: name } })
+    // })
+    </script>
+</head>
+<body>
+    <!-- <fieldset>
+        <p>The page at: https://localhost says:</p>
+        <p>Your Name:</p>
+        <input type="text" id="name">
+        <div id="buttons">
+            <button id="cancel">Cancel</button><button id="OK">Ok</button>
+        </div>
+    </fieldset> -->
+    <div id="dashboard"></div>
+</body>
+</html>

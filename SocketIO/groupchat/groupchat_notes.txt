@@ -1,0 +1,13 @@
+1) nodejs renders "index"
+2)Ask the user for their "name" and store that in the server
+3)Have client EMIT "new_user" back to server
+4)Server LISTEN for "new_user" event:
+-  Add User to users(array of user objects)
+-  Have the server BROADCAST event to all clients:"user_joined",{new_user:{session_id:"",name:""}}
+-  Server EMIT 'existing_users' to the new user
+5)Have the client LISTEN for the "user_joined" event
+-  add a div for the new user: .append(`<div id="${data.new_user}"><h4>${data.new_user}</h4></div>`)
+
+//Disconnect
+6)Have Server LISTEN for 'disconnect'
+-BROADCAST 'disconnected_user' to all clients that
