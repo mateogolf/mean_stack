@@ -13,33 +13,39 @@
     $(document).ready(function () {
         var user = { id: "", name: "" };
         user.name = prompt("The page at: https://localhost says:\nYour Name:");
+        if (user.name.length == 0) window.location.reload();
         const socket = io.connect();
-        // user.id=socket.id;
+        user.id = socket.id;
         // console.log("This session's userID:",user.id)
-        // (user.name.length > 0) ? socket.emit('new_user', { name: user.name }) : window.location.reload();
-        socket.emit('new_user', { name: user.name})
-        socket.on('logged_in',(data)=>{
-            user.id=data.user_id;
-            console.log("Successful Login:",user)
+        socket.emit('new_user', { name: user.name })
+        socket.on('logged_in', (data) => {
+            user.id = data.user_id;
+            console.log("Successful Login:", user)
         })
-        var users =[];
-        socket.on('existing_users',(data)=>{
-            users=data.users;
+        socket.on('joined',(data)=>{
+            $('#chat').append(`<li class="server_response">****${data.name} joined the chat****</li>`)
+        })
+        //(name.length>1)?socket.emit('new_user',{new_user:{id:user.id,name:user.name}}):window.location.reload();
+        var users = [];
+        socket.on('existing_users', (data) => {
+            users = data.users;
             console.log(users)
             $('#dashboard').html("")
-            for(let i=0;i<users.length;i++){
+            for (let i = 0; i < users.length; i++) {
                 $('#dashboard').append(`<div class="user" id="${users[i].id}"><h4>${users[i].name}</h4></div>`)
             }
         })
-        socket.on('disconnected_user',(data)=>{
-            console.log("Disconnected user, done on user's side: ",data.id)
-            $(`#${data.id}`).remove();
+        socket.on('disconnected_user', (data) => {
+            console.log("Disconnected user, done on user's side: ", data.user)
+            $(`#${data.user.id}`).remove();
+            $('#chat').append(`<li class="server_response">****${data.user.name} disconnected from the chat****</li>`)
         })
 
         $("#chatbox").submit(function (event) {
             // event.preventDefault();
             let message= $("#message").val();
             socket.emit('message_sent',{name:user.name,message:message});
+            $("#message").val("");
             event.preventDefault();
         })
         socket.on('message_received',(data)=>{
@@ -53,8 +59,8 @@
     <h2>Conversation Board</h2>
     <ul id="chat"></ul>
     <form id="chatbox">
-        <input type="text" id="message" placeholder="enter your message here">
-        <button type="submit">Send</button>
+        <p><input type="text" id="message" placeholder="enter your message here"></p>
+        <p><button type="submit">Send</button></p>
 
     </form>
 </body>

@@ -23,7 +23,14 @@ li{
 }
 #chat{
     border: 1px solid black;
-    width:80%;
-    height:65%;
+    width:90%;
+    height:150px;
     overflow: auto;
+}
+input{
+    width:90%;
+}
+.server_response{
+    color: grey;
+    /* text-align: center; */
 }

@@ -26,18 +26,24 @@ io.sockets.on('connection', function (socket) {
     console.log("Client/socket is connected!");
     console.log("Client/socket id is: ", socket.id);
     //Code
-    socket.on('new_user',(data)=>{
-        let new_user={id:socket.id,name:data.name}
-        users.push(new_user)
-        socket.emit('logged_in', {user_id:socket.id })
-        io.emit('existing_users',{users:users})
+    socket.on('new_user', (data) => {
+        let user = { id: socket.id, name: data.name }
+        users.push(user)
+        socket.emit('logged_in', { user_id: socket.id })
+        io.emit('existing_users', { users: users })
+        socket.broadcast.emit('joined',{name:user.name})
     })
 
-    socket.on('disconnect',(data)=>{
-        console.log("Disconnected User:", data.user)//JSON.stringify(data.user))
-        let loc=users.indexOf(data.user)
-        users.splice(loc,1)
-        io.emit('disconnected_user',{id:socket.id})
+    socket.on('disconnect', (data) => {
+        console.log("Disconnected User:", socket.id)//JSON.stringify(data.user))
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].id == socket.id){ 
+                var dis_user = users[i]
+                users.splice(i, 1);
+            }
+        }
+        console.log(users)
+        io.emit('disconnected_user', { user: dis_user })
     })
     socket.on('message_sent',(data)=>{
         let message_received= `${data.name}: ${data.message}`

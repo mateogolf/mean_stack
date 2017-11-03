@@ -39,9 +39,6 @@ io.sockets.on('connection', function (socket) {
         for(let i=0;i<users.length;i++){
             if (users[i].id == socket.id) users.splice(i, 1)
         }
-        // let loc=users.indexOf(socket.id)
-        // console.log("Disconnected User:", loc)
-        // users.splice(loc,1)
         console.log(users)
         io.emit('disconnected_user',{id:socket.id})
     })
