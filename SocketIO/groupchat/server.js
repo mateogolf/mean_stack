@@ -39,4 +39,8 @@ io.sockets.on('connection', function (socket) {
         users.splice(loc,1)
         io.emit('disconnected_user',{id:socket.id})
     })
+    socket.on('message_sent',(data)=>{
+        let message_received= `${data.name}: ${data.message}`
+        io.emit('message_received', { new_message: message_received})
+    })
 })

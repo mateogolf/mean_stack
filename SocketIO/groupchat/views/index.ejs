@@ -14,14 +14,14 @@
         var user = { id: "", name: "" };
         user.name = prompt("The page at: https://localhost says:\nYour Name:");
         const socket = io.connect();
-        user.id=socket.id;
+        // user.id=socket.id;
         // console.log("This session's userID:",user.id)
+        // (user.name.length > 0) ? socket.emit('new_user', { name: user.name }) : window.location.reload();
         socket.emit('new_user', { name: user.name})
         socket.on('logged_in',(data)=>{
             user.id=data.user_id;
             console.log("Successful Login:",user)
         })
-        //(name.length>1)?socket.emit('new_user',{new_user:{id:user.id,name:user.name}}):window.location.reload();
         var users =[];
         socket.on('existing_users',(data)=>{
             users=data.users;
@@ -35,22 +35,27 @@
             console.log("Disconnected user, done on user's side: ",data.id)
             $(`#${data.id}`).remove();
         })
+
+        $("#chatbox").submit(function (event) {
+            // event.preventDefault();
+            let message= $("#message").val();
+            socket.emit('message_sent',{name:user.name,message:message});
+            event.preventDefault();
+        })
+        socket.on('message_received',(data)=>{
+            $('#chat').append(`<li>${data.new_message}</li>`)
+        })
     })
-    // $(document).unload(function(){
-    //     //emit disconnect of this user
-    //     socket.emit('disconnect', { user: { id: socket.id, name: name } })
-    // })
     </script>
 </head>
 <body>
-    <!-- <fieldset>
-        <p>The page at: https://localhost says:</p>
-        <p>Your Name:</p>
-        <input type="text" id="name">
-        <div id="buttons">
-            <button id="cancel">Cancel</button><button id="OK">Ok</button>
-        </div>
-    </fieldset> -->
     <div id="dashboard"></div>
+    <h2>Conversation Board</h2>
+    <ul id="chat"></ul>
+    <form id="chatbox">
+        <input type="text" id="message" placeholder="enter your message here">
+        <button type="submit">Send</button>
+
+    </form>
 </body>
 </html>

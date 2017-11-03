@@ -1,10 +1,3 @@
-/* fieldset{
-    display: flex;
-    flex-direction: column;
-}
-#buttons{
-    text-align: right;
-} */
 *{
     margin: 0px;
     padding: 0px;
@@ -23,4 +16,14 @@ h4{
     border: 1px solid black;
     background-color: skyblue;
     text-align: center;
+}
+li{
+    margin-left: 10px;
+    list-style: none;
+}
+#chat{
+    border: 1px solid black;
+    width:80%;
+    height:65%;
+    overflow: auto;
 }
